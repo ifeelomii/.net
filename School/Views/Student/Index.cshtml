@@ -1,0 +1,21 @@
+﻿@using model;
+@using services;
+@using StudentControllers;
+@using System.Collections.Generic;
+
+@{
+    ViewData["Title"] = "Student Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Student List</h1>
+
+    @{ 
+        List<Student> allStudents = this.ViewData["students"] as List<Student>;  
+        
+        foreach(Student std in allStudents){
+            <p> @std.StudentId @std.NameFirst @std.NameLast @std.DOB @std.EmailId </p>
+        }
+    }
+
+</div>

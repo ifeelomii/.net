@@ -1,0 +1,21 @@
+@using model;
+@using services;
+@using StudentControllers;
+@using System.Collections.Generic;
+
+@{
+    ViewData["Title"] = "Student Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Student List</h1>
+
+    @{ 
+        bool addStudents = (bool) this.ViewData["addnewstudent"];  
+        
+        if(addStudents){
+            <p> New Student Added Successfully </p>
+        }
+    }
+
+</div>
