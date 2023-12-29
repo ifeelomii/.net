@@ -1,0 +1,48 @@
+@using model;
+@using services;
+@using StudentControllers;
+@using System.Collections.Generic;
+
+@{
+    ViewData["Title"] = "Student Page";
+}
+
+<div class="text-center">
+    <div align="center" class="text-capitalize">
+    <h1 class="display-4">Student By Id</h1>
+    <hr/>
+    <form method="post">
+        <label for="">Search: <input type="number" name="searchId" id="input"></label>
+        <button type="submit">Search</button>
+    </form>
+
+    <br/>
+    @{ 
+    <table>
+        <thead align="center">
+            <tr>
+                <th>Student Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Email Id</th>
+            </tr>
+        </thead>
+       @{ 
+            List<Student> allStudents = this.ViewData["studentsbyid"] as List<Student>;
+            <tbody align="center">
+                @foreach(Student std in allStudents){
+                <tr> 
+                    <td>@std.StudentId</td>  
+                    <td>@std.NameFirst</td>  
+                    <td>@std.NameLast</td>  
+                    <td>@std.DOB</td>  
+                    <td>@std.EmailId</td>  
+                </tr>
+                }
+            </tbody>
+        }
+    </table>
+    }
+    </div>
+</div>

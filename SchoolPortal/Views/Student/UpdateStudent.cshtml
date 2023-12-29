@@ -1,0 +1,23 @@
+@using School.Controllers;
+@{
+    ViewData["Title"] = "Update Student";
+}
+
+<div class="text-center contain register-div">
+    <h1 class="display-4">Update Student</h1>
+    <hr/>
+    @{
+        string msg = this.ViewData["addnewstudents"] as string;
+    }
+    <div class="contain">
+        <form action="" method="post">
+            <label for="userid">Student Id: <input type="number" id="userid" name="id"></label>
+            <label for="fname">First Name: <input type="text" id="fname" name="fname"></label>
+            <label for="lname">Last Name: <input type="text" id="lname" name="lname"></label>
+            <label for="dob">Date Of Birth: <input type="text" id="dob" name="dob" placeholder="(YYYY/MM/DD)"></label>
+            <label for="emailid">Email Id: <input type="text" id="emailid" name="emailid"></label>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <p> @msg </p>
+    </div>
+</div>

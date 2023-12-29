@@ -1,0 +1,48 @@
+@using model;
+@{
+    ViewData["Title"] = "User";
+}
+
+<div class="text-center">
+   @{ 
+    User? user = this.ViewData["login"] as User;
+   }
+    <h1 class="display-4">Valid User Login !</h1>
+    <h2> @user.FirstName</h2>
+
+    <hr/>
+
+    <div class="container ">
+        <div class="row">
+            <div class="col-6 list">
+                <ul class="contain">
+                    <h3>User</h3>
+                    <li>
+                        <a href="Register">New User</a>
+                    </li>
+                    <li>
+                        <a href="UpdateUser">Update User</a>
+                    </li>
+                    <li>
+                        <a href="DeleteUser">Delete User</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6 list">
+                <ul class="contain">
+                    <h3>Student</h3>
+                    <li>
+                        <a href="/Student/AddNewStudent">New Student</a>
+                    </li>
+                    <li>
+                        <a href="/Student/UpdateStudent">Update Student</a>
+                    </li>
+                    <li>
+                        <a href="/Student/DeleteStudent">Delete Student</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</div>

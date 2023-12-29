@@ -1,0 +1,107 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.contain {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding: 5px;
+  margin: 3px;
+  text-decoration: none;
+}
+
+.contain form {
+  border: 2px solid rgb(0, 0, 0);
+  padding: 20px 80px;
+  border-radius: 50px;
+}
+.contain form label {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin: 3px;
+}
+
+/* .row ul li {
+  padding: 5px 10px 2px 10px;
+  margin: 10px;
+  text-decoration: none;
+  color: rgb(78, 78, 209);
+} */
+
+.register-div p a {
+  text-decoration: none;
+  color: rgb(78, 78, 209);
+}
+
+thead > tr > th {
+  background-color: #cce;
+  font-size: 18px;
+  border: 1px solid black;
+  border-bottom: 2px solid #999;
+  padding: 2px 4px;
+}
+tbody > tr > td {
+  font-size: 18px;
+  border: 1px solid black;
+  border-bottom: 2px solid #999;
+  padding: 2px 4px;
+}
+tbody > tr > td > a {
+  text-decoration: none;
+  color: black;
+}
+
+.top-sticky {
+  position: sticky;
+  top: 10;
+}
+
+.list > ul > li {
+  list-style: none;
+}
+
+.list > ul > li > a {
+  display: flex;
+  text-decoration: none;
+  color: rgb(93, 86, 86);
+  margin: 3px;
+}
+
+.list > ul > li > a:hover {
+  display: flex;
+  text-decoration: none;
+  color: black;
+  margin: 3px;
+}
+
+.hero-section{
+  display: flex;
+  border-top: 10px;
+}

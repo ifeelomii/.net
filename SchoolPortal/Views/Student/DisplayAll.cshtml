@@ -1,0 +1,54 @@
+﻿@using model;
+@using services;
+@using StudentControllers;
+@using System.Collections.Generic;
+
+@{
+    ViewData["Title"] = "Student Page";
+}
+
+
+
+<div class="text-center">
+
+    <div align="center" class="text-capitalize">
+    <h1 class="display-4">Student List</h1>
+    <hr />
+    @{ 
+        <table border="1">
+            <caption>
+                Students List
+            </caption>
+            <thead align="center" border="1">
+                <tr>
+                    <th>Student Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date of Birth</th>
+                    <th>Email ID</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            @{List<Student>? allStudents = this.ViewData["students"] as List<Student>;
+                <tbody align="center" border="1">
+                    @foreach(Student? std in allStudents){
+                        <tr>
+                            <td> @std.StudentId </td>
+                            <td> @std.NameFirst </td>
+                            <td> @std.NameLast </td>
+                            <td> @std.DOB </td>
+                            <td> @std.EmailId </td>
+                            <td><a href="">Details</a></td>
+                            <td><a href="">Edit</a></td>
+                            <td><a href="">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            }
+        </table>
+
+        <p><a href="DisplayById">Search By Id?</a></p>
+    }
+</div>

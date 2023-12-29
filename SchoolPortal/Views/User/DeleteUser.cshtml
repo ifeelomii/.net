@@ -1,0 +1,23 @@
+@using model;
+@{
+    ViewData["Title"] = "User";
+}
+
+
+<div class="text-center contain">
+    <h1 class="display-4">Delete User</h1>
+    <hr/>
+    @{
+        string msg = this.ViewData["msg"] as string;
+    }
+    <form action="" class="was-validated" method="POST">
+        <div class="mb-3 mt-3">
+            <label for="uname" class="form-label">User Id:</label>
+            <input type="number" class="form-control" id="delid" name="delid" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <p> @msg </p>
+</div>
