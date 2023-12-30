@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace dao;
 
-public class StudentDao{
+public class StudentDao:IStudentDao{
     public List<Student>? DisplayAllStudentDao()
     {
         List<Student> lst = new List<Student>();
@@ -91,7 +91,7 @@ public class StudentDao{
         }
     }
 
-    public bool UpdateUserByIdDao(Student std)
+    public bool UpdateStudentByIdDao(Student std)
     {
         Student st = new Student();
         st.StudentId = std.StudentId;
@@ -116,7 +116,7 @@ public class StudentDao{
         }
     }
 
-    public bool DeleteUserByIdDao(int id)
+    public bool DeleteStudentByIdDao(int id)
     {
         Student st = new Student();
         st.StudentId = id;
@@ -133,6 +133,36 @@ public class StudentDao{
         catch (System.Exception e)
         {
             Console.WriteLine(e.Message);
+            return false;
+        }
+    }
+
+    public bool ValidateStudentDao(Student std)
+    {
+        MySqlConnection conn = new MySqlConnection();
+        conn.ConnectionString = "server=192.168.10.150; port=3306; user=dac4; password=welcome; database=dac4";
+        string query = "SELECT namefirst,dob FROM newstudent";
+        MySqlCommand cmd = new MySqlCommand(query, conn);
+        try 
+        {
+            conn.Open();
+            MySqlDataReader reader = cmd.ExecuteReader();
+            bool flag = false;
+            while (reader.Read())
+            {
+                Student usr = new Student();
+                usr.NameFirst = reader["namefirst"].ToString();
+                usr.DOB = reader["dob"].ToString();
+                Console.WriteLine(usr.DOB);
+                if (usr.NameFirst == std.NameFirst && usr.DOB == std.DOB) {
+                    Console.WriteLine("\n Valid User");
+                    flag = true;
+                }
+            }
+            return flag;
+        } 
+        catch (System.Exception e) {
+            Console.WriteLine("Exception Found "+e.Message);
             return false;
         }
     }

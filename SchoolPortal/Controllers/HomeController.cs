@@ -1,8 +1,10 @@
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
+using model;
 using School.Models;
 
-namespace School.Controllers;
+namespace controllers;
 
 public class HomeController : Controller
 {
@@ -20,6 +22,22 @@ public class HomeController : Controller
 
     public IActionResult About()
     {
+        return View();
+    }
+    public IActionResult Contact()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult Contact(string fname, string lname, string emailid, string desc)
+    {
+        List<Complaint> complaint = new List<Complaint>();
+        Complaint c = new Complaint();
+        c.NameFirst = fname;
+        c.NameLast = lname;
+        c.EmailId = emailid;
+        c.Description = desc;
+        
         return View();
     }
 

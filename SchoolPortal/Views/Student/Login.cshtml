@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Login Page";
+}
+
+<div class="text-center contain login-div">
+    <h1 class="display-4">Student Login</h1>
+    <hr/>
+    @{
+        string msg = this.ViewData["msg"] as string;
+    }
+    <p> @msg </p>
+    <form action="" class="was-validated" method="POST">
+        <div class="mb-3 mt-3">
+            <label for="uname" class="form-label">User Name:</label>
+            <input type="text" class="form-control" id="fname" placeholder="Enter username" value="user" name="uname" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div class="mb-3">
+            <label for="pwd" class="form-label">Date Of Birth:</label>
+            <input type="text" class="form-control" id="pwd" placeholder="(YYYY-MM-DD)" value="2000-01-01" name="dob" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <p>Not a User? <a href="/Home/Contact">Contact Your School!</a></p>
+</div>

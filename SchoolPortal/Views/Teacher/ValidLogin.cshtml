@@ -1,0 +1,54 @@
+@using model;
+@{
+    ViewData["Title"] = "User";
+}
+
+<div class="text-center">
+   @{ 
+    Teacher? user = this.ViewData["list"] as Teacher;
+   }
+    <h1 class="display-4">Valid User Login !</h1>
+    <h2>Teacher: @user.UserName</h2>
+    <hr/>
+    
+    <button class="anchor-btn"><a href="/Student/AddNewStudent">New Student</a></button>
+    <button class="anchor-btn"><a href="/Student/UpdateStudent">Update Student</a></button>
+    <button class="anchor-btn"><a href="/Student/DeleteStudent">Delete Student</a></button>
+    <button class="anchor-btn"><a href="/Student/DisplayAll">Display Students</a></button>
+
+        @* @{ 
+            <table border="1">
+                <caption>
+                    Teachers List
+                </caption>
+                <thead align="center" border="1">
+                    <tr>
+                        <th>Teacher Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>User Name</th>
+                        <th>Details</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                @{
+                    List<Teacher>? displayTeachers = this.ViewData["login"] as List<Teacher>;
+                    <tbody align="center" border="1">
+                        @foreach(Teacher? std in displayTeachers){
+                            <tr>
+                                <td> @std.TeacherId </td>
+                                <td> @std.FirstName </td>
+                                <td> @std.LastName </td>
+                                <td> @std.UserName </td>
+                                <td><a href="" >Details</a></td>
+                                <td><a href="" style="pointer-events: none">Edit</a></td>
+                                <td><a href="DeleteStudent/@std" >Delete</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+        }*@
+    
+</div>

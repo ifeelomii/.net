@@ -8,4 +8,5 @@ public interface IStudentService{
     public bool AddNewStudentService(Student st);
     public bool UpdateStudentService(Student st);
     public bool DeleteStudentByIdService(int delid);
+    public bool ValidateStudentService(Student std);
 }

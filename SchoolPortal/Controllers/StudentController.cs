@@ -5,10 +5,11 @@ using School.Models;
 using services;
 using System.Collections.Generic;
 
-namespace StudentControllers;
+namespace controllers;
 
 public class StudentController : Controller
 {
+    static Teacher? t1=null;
     static Student? s1=null;
     private readonly ILogger<StudentController> _logger;
 
@@ -26,27 +27,42 @@ public class StudentController : Controller
         this.ViewData["students"] = lst;
         return View();
     }
-
-
-    [HttpGet]
-    public IActionResult DisplayById()
-    {
-        System.Console.WriteLine("Display by Id");
-        List<Student> lst = new List<Student>();
-        this.ViewData["studentsbyid"] = lst;
-        return View();
-    }
-
     [HttpPost]
-    public IActionResult DisplayById(int searchId)
-    {        
-        List<Student>? lst = new List<Student>();
+    public IActionResult DisplayAll(int searchId=0)
+    {
+        List<Student> lst = new List<Student>();
+        List<Student> list = new List<Student>();
         StudentService std = new StudentService();
-        lst = std.DisplayAllStudentByIdService(searchId);
-        this.ViewData["studentsbyid"] = lst;
+        list = std.DisplayAllStudentService();
+        lst = list;
+        if(searchId !=0 ){
+            // var students = from s in lst where s.StudentId == searchId select s;
+            lst = list.FindAll((e)=>e.StudentId==searchId);
+        }
+        this.ViewData["students"] = lst;
         return View();
-        // return this.RedirectToAction("");
     }
+
+
+    // [HttpGet]
+    // public IActionResult DisplayById()
+    // {
+    //     System.Console.WriteLine("Display by Id");
+    //     List<Student> lst = new List<Student>();
+    //     this.ViewData["studentsbyid"] = lst;
+    //     return View();
+    // }
+
+    // [HttpPost]
+    // public IActionResult DisplayById(int searchId)
+    // {        
+    //     List<Student>? lst = new List<Student>();
+    //     StudentService std = new StudentService();
+    //     lst = std.DisplayAllStudentByIdService(searchId);
+    //     this.ViewData["studentsbyid"] = lst;
+    //     return View();
+    //     // return this.RedirectToAction("");
+    // }
 
     [HttpGet]
     public IActionResult AddNewStudent()
@@ -105,8 +121,9 @@ public class StudentController : Controller
     }
 
     [HttpGet]
-    public IActionResult DeleteStudent()
+    public IActionResult DeleteStudent(Student std)
     {
+        this.ViewData["id"] = std;
         return View();
     }
     [HttpPost]
@@ -123,5 +140,30 @@ public class StudentController : Controller
             return View();
         }
         
+    }
+
+    [HttpGet]
+    public IActionResult Login()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Login(string uname, string dob)
+    {
+        bool flag = false;
+        Student tech = new Student();
+        StudentService us = new StudentService();
+        tech.NameFirst = uname;
+        tech.DOB = dob;
+        flag = us.ValidateStudentService(tech);
+        if (flag) {
+            s1 = tech;
+            return this.RedirectToAction("DisplayAll");
+        }
+        else {
+            this.ViewData["msg"] = "User Login Failed ! Invalid Credentials?";
+            return View();
+        }
     }
 }

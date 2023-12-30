@@ -1,21 +1,19 @@
 @using model;
 @{
-    ViewData["Title"] = "Student";
+    ViewData["Title"] = "Delete Teacher";
 }
 
 
 <div class="text-center contain">
-    <h1 class="display-4">Delete Student</h1>
+    <h1 class="display-4">Delete Teacher</h1>
     <hr/>
     @{
         string msg = this.ViewData["msg"] as string;
-        Student? std = this.ViewData["id"] as Student;
-
     }
     <form action="" class="was-validated" method="POST">
         <div class="mb-3 mt-3">
-            <label for="uname" class="form-label">Student ID:</label>
-            <input type="number" class="form-control" id="delid" name="delid" value="@std.StudentId" required>
+            <label for="uname" class="form-label">User Name:</label>
+            <input type="text" class="form-control" id="delun" name="delun" required>
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Please fill out this field.</div>
         </div>

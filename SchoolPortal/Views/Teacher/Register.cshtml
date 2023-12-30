@@ -1,10 +1,10 @@
 @using controllers;
 @{
-    ViewData["Title"] = "Student Registration";
+    ViewData["Title"] = "Teacher Registration";
 }
 
 <div class="text-center contain register-div">
-    <h1 class="display-4">Register Student</h1>
+    <h1 class="display-4">Teacher Register</h1>
     <hr/>
     @* @{int cnt = UserController.count;} *@
     @{
@@ -15,13 +15,13 @@
     <p> @msg </p>
     <div class="contain">
         <form action="" method="post">
-            <label for="userid">Student Id: <input type="number" id="userid" name="id"></label>
+            <label for="userid">User Id: <input type="number" id="userid" name="userid"></label>
             <label for="fname">First Name: <input type="text" id="fname" name="fname"></label>
             <label for="lname">Last Name: <input type="text" id="lname" name="lname"></label>
-            <label for="dob">Date Of Birth: <input type="text" id="dob" name="dob" placeholder="(YYYY/MM/DD)"></label>
-            <label for="emailid">Email Id: <input type="text" id="emailid" name="emailid"></label>
+            <label for="uname">User Name: <input type="text" id="uname" name="uname"></label>
+            <label for="pwd">Password: <input type="password" id="pwd" name="pwd"></label>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    <p>Already a User? <a href="Login">Login Now !</a></p>
+    
 </div>

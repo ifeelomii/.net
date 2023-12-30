@@ -1,0 +1,64 @@
+@using model;
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<div class="text-center">
+   @{ 
+    Admin? user = this.ViewData["login"] as Admin;
+   }
+    <h1 class="display-4">Valid User Login !</h1>
+    <h2>Admin: @user.UserName</h2>
+    <hr/>
+    
+    <button class="anchor-btn"><a href="Register">Add New Admin</a></button>
+    <button class="anchor-btn"><a href="/Student/UpdateStudent">Update Admin</a></button>
+    <button class="anchor-btn"><a href="/Student/DeleteStudent">Delete Admin</a></button>
+    <br/>
+    <br/>
+    <button class="anchor-btn"><a href="/Teacher/Register">Add New Teacher</a></button>
+    <button class="anchor-btn"><a href="/Teacher/UpdateTeacher">Update Teacher</a></button>
+    <button class="anchor-btn"><a href="/Teacher/DeleteTeacher">Delete Teacher</a></button>
+    <button class="anchor-btn"><a href="/Teacher/DisplayAll">Display Teachers</a></button>
+    <br/>
+    <br/>
+    <button class="anchor-btn"><a href="/Student/AddNewStudent">Add New Student</a></button>
+    <button class="anchor-btn"><a href="/Student/UpdateStudent">Update Student</a></button>
+    <button class="anchor-btn"><a href="/Student/DeleteStudent">Delete Student</a></button>
+    <button class="anchor-btn"><a href="/Student/DisplayAll">Display Students</a></button>
+    <br/>
+
+    @*<div class="container "> 
+       <div class="row">
+            <div class="col-6 list">
+                <ul class="contain">
+                    <h3>User</h3>
+                    <li>
+                        <a href="Register">New Teacher</a>
+                    </li>
+                    <li>
+                        <a href="UpdateUser">Update Teacher</a>
+                    </li>
+                    <li>
+                        <a href="DeleteUser">Delete Teacher</a>
+                    </li>
+                </ul>
+            </div> 
+            <div class="col-6 list">
+                <ul class="contain">
+                    <h3>Student</h3>
+                    <li>
+                        <a href="/Student/AddNewStudent">New Student</a>
+                    </li>
+                    <li>
+                        <a href="/Student/UpdateStudent">Update Student</a>
+                    </li>
+                    <li>
+                        <a href="/Student/DeleteStudent">Delete Student</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>*@
+    
+</div>

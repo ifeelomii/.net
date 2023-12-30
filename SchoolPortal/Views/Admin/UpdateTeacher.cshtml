@@ -1,0 +1,23 @@
+@using controllers;
+@{
+    ViewData["Title"] = "Update Page";
+}
+
+<div class="text-center contain register-div">
+    <h1 class="display-4">Update Admin</h1>
+    <hr/>
+    @{
+        string msg = this.ViewData["msg"] as string;
+    }
+    <div class="contain">
+        <form method="post">
+            <label for="userid">User Id: <input type="number" id="userid" name="userid"></label>
+            <label for="fname">First Name: <input type="text" id="fname" name="fname"></label>
+            <label for="lname">Last Name: <input type="text" id="lname" name="lname"></label>
+            <label for="lname">User Name: <input type="text" id="uname" name="uname"></label>
+            <label for="pwd">Password: <input type="password" id="pwd" name="pwd"></label>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <p> @msg </p>
+    </div>
+</div>

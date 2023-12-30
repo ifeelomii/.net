@@ -31,7 +31,7 @@ public class StudentService : IStudentService
     {
         bool flag;
         StudentDao db = new StudentDao();
-        flag = db.UpdateUserByIdDao(st);
+        flag = db.UpdateStudentByIdDao(st);
         return flag;
     }
 
@@ -39,7 +39,15 @@ public class StudentService : IStudentService
     {
         bool flag;
         StudentDao db = new StudentDao();
-        flag = db.DeleteUserByIdDao(delid);
+        flag = db.DeleteStudentByIdDao(delid);
+        return flag;
+    }
+
+    public bool ValidateStudentService(Student std)
+    {
+        bool flag;
+        StudentDao db = new StudentDao();
+        flag = db.ValidateStudentDao(std);
         return flag;
     }
 }
