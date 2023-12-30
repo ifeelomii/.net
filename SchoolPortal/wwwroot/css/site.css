@@ -55,7 +55,7 @@ body {
   color: rgb(78, 78, 209);
 } */
 
-.register-div p a {
+.login-div p a {
   text-decoration: none;
   color: rgb(78, 78, 209);
 }
@@ -101,7 +101,23 @@ tbody > tr > td > a {
   margin: 3px;
 }
 
-.hero-section{
+.hero-section {
   display: flex;
   border-top: 10px;
+}
+.width-200 > form > label > input {
+  width: 200px;
+}
+.width-200 > form > label > input > :last-child{
+  width: 200px;
+  margin-bottom: 3px;
+}
+.anchor-btn > a{
+  text-decoration: none;
+  color: black;
+}
+.anchor-btn > a:hover{
+  text-decoration: none;
+  padding: 5px;
+  color: rgb(55, 53, 53);
 }
