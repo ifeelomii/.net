@@ -10,35 +10,7 @@
 
 <div class="text-center">
     <div align="center" class="text-capitalize">
-    
-
     <br/>
-    @*@{ 
-    <table>
-        <thead align="center">
-            <tr>
-                <th>Student Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date of Birth</th>
-                <th>Email Id</th>
-            </tr>
-        </thead>
-        @{ 
-            List<Student> allStudentsbyid = this.ViewData["studentsbyid"] as List<Student>;
-            <tbody align="center">
-                @foreach(Student std in allStudentsbyid){
-                <tr> 
-                    <td>@std.StudentId</td>  
-                    <td>@std.NameFirst</td>  
-                    <td>@std.NameLast</td>  
-                    <td>@std.DOB</td>  
-                    <td>@std.EmailId</td>  
-                </tr>
-                }
-            </tbody>
-        } 
-    </table>*@
     
     </div>
 
@@ -46,7 +18,7 @@
         <h1 class="display-4">Student List</h1>
         <hr />
         <form method="post">
-            <label for="">Search: <input type="number" name="searchId" id="input" value="0"></label>
+            <label for="">Search: <input type="number" name="searchId" id="input" value="0" min="0"></label>
             <button type="submit">Search</button>
         </form>
         <br/>
@@ -84,7 +56,6 @@
                     </tbody>
                 }
             </table>
-            @* <p><a href="DisplayById">Search By Id?</a></p> *@
         }
     </div>
 </div>
