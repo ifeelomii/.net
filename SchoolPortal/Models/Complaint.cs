@@ -1,21 +1,25 @@
-namespace model;
+// namespace model;
 
-public class Complaint{
-    public int? ComplaintId{ get; set; }
-    public string? NameFirst{ get; set; }
-    public string? NameLast{ get; set; }
-    public string? EmailId{ get; set; }
-    public string? Description{ get; set; }
+// public class Complaint{
+//     public int? ComplaintId{ get; set; }
+//     public string? FirstName{ get; set; }
+//     public string? LastName{ get; set; }
+//     public string? EmailId{ get; set; }
+//     public string? Description{ get; set; }
+//     public int? StatusId{ get; set; }
 
-    public Complaint():this(001,"user","user","user123@gmail.com","NA"){
+//     //Default Constructor
+//     public Complaint():this(001, "user", "user", "user123@gmail.com", "NA", 0){
 
-    }
+//     }
 
-    public Complaint(int id, string fnmae, string lname, string emailid ,string desc){
-        this.ComplaintId = id;
-        this.NameFirst = fnmae;
-        this.NameLast = lname;
-        this.EmailId = emailid;
-        this.Description = desc;
-    }
-}
+//     //Parameterised Constructor
+//     public Complaint(int id, string fnmae, string lname, string emailid ,string desc, int status){
+//         this.ComplaintId = id;
+//         this.FirstName = fnmae;
+//         this.LastName = lname;
+//         this.EmailId = emailid;
+//         this.Description = desc;
+//         this.StatusId = status;
+//     }
+// }
