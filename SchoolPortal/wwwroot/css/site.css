@@ -87,11 +87,18 @@ tbody > tr > td > a {
   list-style: none;
 }
 
-.list > ul > li > a {
+.list > ul > li > button > a {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
   text-decoration: none;
   color: rgb(93, 86, 86);
   margin: 3px;
+}
+.list > ul > li > button {
+  margin: 2px;
+  background-color: rgb(152, 255, 255);
 }
 
 .list > ul > li > a:hover {
@@ -108,15 +115,15 @@ tbody > tr > td > a {
 .width-200 > form > label > input {
   width: 200px;
 }
-.width-200 > form > label > input > :last-child{
+.width-200 > form > label > input > :last-child {
   width: 200px;
   margin-bottom: 3px;
 }
-.anchor-btn > a{
+.anchor-btn > a {
   text-decoration: none;
   color: black;
 }
-.anchor-btn > a:hover{
+.anchor-btn > a:hover {
   text-decoration: none;
   padding: 5px;
   color: rgb(55, 53, 53);
