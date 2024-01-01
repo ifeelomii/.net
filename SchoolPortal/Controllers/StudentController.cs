@@ -11,29 +11,27 @@ public class StudentController : Controller
 {
     static Teacher? t1=null;
     static Student? s1=null;
-    private readonly ILogger<StudentController> _logger;
+    private readonly IStudentService _StudentService;
 
-    public StudentController(ILogger<StudentController> logger)
+    public StudentController(IStudentService StudentService)
     {
-        _logger = logger;
+        this._StudentService = StudentService;
     }
 
     [HttpGet]
     public IActionResult DisplayAll()
     {
-        List<Student> lst = new List<Student>();
-        StudentService std = new StudentService();
-        lst = std.DisplayAllStudentService();
+        List<Student>? lst = new List<Student>();
+        lst = _StudentService.DisplayAllStudentService();
         this.ViewData["students"] = lst;
         return View();
     }
     [HttpPost]
     public IActionResult DisplayAll(int searchId=0)
     {
-        List<Student> lst = new List<Student>();
-        List<Student> list = new List<Student>();
-        StudentService std = new StudentService();
-        list = std.DisplayAllStudentService();
+        List<Student>? lst = new List<Student>();
+        List<Student>? list = new List<Student>();
+        list = _StudentService.DisplayAllStudentService();
         lst = list;
         if(searchId !=0 ){
             // var students = from s in lst where s.StudentId == searchId select s;
@@ -42,27 +40,6 @@ public class StudentController : Controller
         this.ViewData["students"] = lst;
         return View();
     }
-
-
-    // [HttpGet]
-    // public IActionResult DisplayById()
-    // {
-    //     System.Console.WriteLine("Display by Id");
-    //     List<Student> lst = new List<Student>();
-    //     this.ViewData["studentsbyid"] = lst;
-    //     return View();
-    // }
-
-    // [HttpPost]
-    // public IActionResult DisplayById(int searchId)
-    // {        
-    //     List<Student>? lst = new List<Student>();
-    //     StudentService std = new StudentService();
-    //     lst = std.DisplayAllStudentByIdService(searchId);
-    //     this.ViewData["studentsbyid"] = lst;
-    //     return View();
-    //     // return this.RedirectToAction("");
-    // }
 
     [HttpGet]
     public IActionResult AddNewStudent()
@@ -73,16 +50,9 @@ public class StudentController : Controller
     public IActionResult AddNewStudent(int id, string fname, string lname, string dob ,string emailid)
     {
         bool flag;
-        Student st = new Student();
-        st.StudentId = id;
-        st.NameFirst = fname;
-        st.NameLast = lname;
-        st.DOB = dob;
-        st.EmailId = emailid;
-        StudentService std = new StudentService();
-        flag = std.AddNewStudentService(st);
+        Student st = new Student(id,fname,lname,dob,emailid);
+        flag = _StudentService.AddNewStudentService(st);
         if(flag){
-            // count++;
             s1 =  st;
             this.ViewData["msg"] = "User Registered Successfully";
             return View();
@@ -101,14 +71,8 @@ public class StudentController : Controller
     public IActionResult UpdateStudent(int id, string fname, string lname, string dob ,string emailid)
     {
         bool flag;
-        Student st = new Student();
-        st.StudentId = id;
-        st.NameFirst = fname;
-        st.NameLast = lname;
-        st.DOB = dob;
-        st.EmailId = emailid;
-        StudentService std = new StudentService();
-        flag = std.UpdateStudentService(st);
+        Student st = new Student(id,fname,lname,dob,emailid);
+        flag = _StudentService.UpdateStudentService(st);
         if(flag){
             s1 =  st;
             this.ViewData["addnewstudents"] = "Updation Successfull";
@@ -130,8 +94,7 @@ public class StudentController : Controller
     public IActionResult DeleteStudent(int delid)
     {
         bool flag = false;
-        StudentService ss = new StudentService();
-        flag = ss.DeleteStudentByIdService(delid);
+        flag = _StudentService.DeleteStudentByIdService(delid);
         if(flag){
             this.ViewData["msg"] = "User Deleted Successfully";
             return View();
@@ -152,11 +115,12 @@ public class StudentController : Controller
     public IActionResult Login(string uname, string dob)
     {
         bool flag = false;
-        Student tech = new Student();
-        StudentService us = new StudentService();
-        tech.NameFirst = uname;
-        tech.DOB = dob;
-        flag = us.ValidateStudentService(tech);
+        Student tech = new Student
+        {
+          NameFirst = uname,
+          DOB = dob
+        };
+        flag = _StudentService.ValidateStudentService(tech);
         if (flag) {
             s1 = tech;
             return this.RedirectToAction("DisplayAll");

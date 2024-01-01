@@ -6,17 +6,16 @@ using services;
 
 namespace controllers;
 
-public class TeacherController : Controller
+public class ComplaintController : Controller
 {
-    private static int trial = 2;
+    static int trial = 2;
     private static string? msg = null;
-    static Teacher? t1=null;
-    static List<Teacher>? tl1=null;
-    private readonly ITeacherService _TeacherService;
+    static Admin? u1=null;
+    private readonly IAdminService _AdminService;
 
-    public TeacherController(ITeacherService TeacherService)
+    public ComplaintController(IAdminService AdminService)
     {
-        this._TeacherService = TeacherService;
+        this._AdminService = AdminService;
     }
 
     public IActionResult Index()
@@ -36,15 +35,15 @@ public class TeacherController : Controller
         bool access = true;
         if (trial == 0)
             access = false;
-        if (access) {
+        if(access){
             bool flag = false;
-            Teacher user = new Teacher {
-            UserName = uname,
-            Password = pwd
+            Admin ad = new Admin{
+                UserName = uname,
+                Password = pwd
             };
-            flag = _TeacherService.ValidateTeacherService(user);
+            flag = _AdminService.ValidateAdminService(ad);
             if (flag) {
-                t1 = user;
+                u1 = ad;
                 return this.RedirectToAction("ValidLogin");
             }
             else {
@@ -61,33 +60,8 @@ public class TeacherController : Controller
     [HttpGet]
     public IActionResult ValidLogin()
     {
-        this.ViewData["list"] = t1;
-        this.ViewData["login"] = TempData["display-login"];
+        this.ViewData["login"] = u1;
 
-        return View();
-    }
-
-    [HttpGet]
-    public IActionResult DisplayAll()
-    {
-        List<Teacher> lst = new List<Teacher>();
-        lst = _TeacherService.DisplayAllTeacherService();
-        this.ViewData["teachers"] = lst;
-        return View();
-    }
-    [HttpPost]
-    public IActionResult DisplayAll(int searchId=0)
-    {
-        List<Teacher> lst = new List<Teacher>();
-        List<Teacher> list = new List<Teacher>();
-        list = _TeacherService.DisplayAllTeacherService();
-        lst = list;
-        // TempData["display-login"] = list;
-        if(searchId !=0 ){
-            // var students = from s in lst where s.StudentId == searchId select s;
-            lst = list.FindAll((e)=>e.TeacherId==searchId);
-        }
-        this.ViewData["teachers"] = lst;
         return View();
     }
 
@@ -101,10 +75,10 @@ public class TeacherController : Controller
     public IActionResult Register(int userid, string fname, string lname,string uname, string pwd)
     {
         bool flag = false;
-        Teacher usr = new Teacher(userid,fname,lname,uname,pwd);
-        flag = _TeacherService.AddTeacherService(usr);
+        Admin usr = new Admin(userid, fname, lname, uname,pwd);
+        flag = _AdminService.AddAdminService(usr);
         if(flag){
-            t1 =  usr;
+            u1 =  usr;
             this.ViewData["msg"] = "User Registered Successfully";
             return View();
         }
@@ -116,23 +90,23 @@ public class TeacherController : Controller
     [HttpGet]
     public IActionResult ValidRegistration()
     {
-        this.ViewData["register"] = t1;
+        this.ViewData["register"] = u1;
         return View();
     }
     
     [HttpGet]
-    public IActionResult UpdateTeacher()
+    public IActionResult UpdateAdmin()
     {
         return View();
     }
     [HttpPost]
-    public IActionResult UpdateTeacher(int userid, string fname, string lname,string uname, string pwd)
+    public IActionResult UpdateAdmin(int userid, string fname, string lname,string uname, string pwd)
     {
         bool flag = false;
-        Teacher usr = new Teacher(userid,fname,lname,uname,pwd);
-        flag = _TeacherService.UpdateTeacherByIdService(usr);
+        Admin usr = new Admin(userid, fname, lname, uname, pwd);
+        flag = _AdminService.UpdateAdminByIdService(usr);
         if(flag){
-            t1 =  usr;
+            u1 =  usr;
             this.ViewData["msg"] = "Updation Successfull";
             return View();
         }
@@ -142,15 +116,15 @@ public class TeacherController : Controller
         }
     }
     [HttpGet]
-    public IActionResult DeleteTeacher()
+    public IActionResult DeleteAdmin()
     {
         return View();
     }
     [HttpPost]
-    public IActionResult DeleteTeacher(string delun)
+    public IActionResult DeleteAdmin(string delun)
     {
         bool flag = false;
-        flag = _TeacherService.DeleteTeacherByIdService(delun);
+        flag = _AdminService.DeleteAdminByIdService(delun);
         if(flag){
             this.ViewData["msg"] = "User Deleted Successfully";
             return View();
@@ -158,6 +132,5 @@ public class TeacherController : Controller
             this.ViewData["msg"] = "User Deletion Failed";
             return View();
         }
-        
     }
 }

@@ -8,15 +8,14 @@ namespace controllers;
 
 public class AdminController : Controller
 {
-    // public static int count = 10;
     static int trial = 2;
     private static string? msg = null;
     static Admin? u1=null;
-    private readonly ILogger<AdminController> _logger;
+    private readonly IAdminService _AdminService;
 
-    public AdminController(ILogger<AdminController> logger)
+    public AdminController(IAdminService AdminService)
     {
-        _logger = logger;
+        this._AdminService = AdminService;
     }
 
     public IActionResult Index()
@@ -38,11 +37,11 @@ public class AdminController : Controller
             access = false;
         if(access){
             bool flag = false;
-            Admin ad = new Admin();
-            AdminService aser = new AdminService();
-            ad.UserName = uname;
-            ad.Password = pwd;
-            flag = aser.ValidateAdminService(ad);
+            Admin ad = new Admin{
+                UserName = uname,
+                Password = pwd
+            };
+            flag = _AdminService.ValidateAdminService(ad);
             if (flag) {
                 u1 = ad;
                 return this.RedirectToAction("ValidLogin");
@@ -73,19 +72,12 @@ public class AdminController : Controller
         return View();
     }
     [HttpPost]
-    public IActionResult Register(int userid, string fname, string lname, string pwd)
+    public IActionResult Register(int userid, string fname, string lname,string uname, string pwd)
     {
         bool flag = false;
-        Admin usr = new Admin();
-        // usr.UserId = count;
-        usr.AdminId = userid;
-        usr.FirstName = fname;
-        usr.LastName = lname;
-        usr.Password = pwd;
-        AdminService uss = new AdminService();
-        flag = uss.AddAdminService(usr);
+        Admin usr = new Admin(userid, fname, lname, uname,pwd);
+        flag = _AdminService.AddAdminService(usr);
         if(flag){
-            // count++;
             u1 =  usr;
             this.ViewData["msg"] = "User Registered Successfully";
             return View();
@@ -111,14 +103,8 @@ public class AdminController : Controller
     public IActionResult UpdateAdmin(int userid, string fname, string lname,string uname, string pwd)
     {
         bool flag = false;
-        Admin usr = new Admin();
-        usr.AdminId = userid;
-        usr.FirstName = fname;
-        usr.LastName = lname;
-        usr.UserName = uname;
-        usr.Password = pwd;
-        AdminService uss = new AdminService();
-        flag = uss.UpdateAdminByIdService(usr);
+        Admin usr = new Admin(userid, fname, lname, uname, pwd);
+        flag = _AdminService.UpdateAdminByIdService(usr);
         if(flag){
             u1 =  usr;
             this.ViewData["msg"] = "Updation Successfull";
@@ -138,8 +124,7 @@ public class AdminController : Controller
     public IActionResult DeleteAdmin(string delun)
     {
         bool flag = false;
-        AdminService uss = new AdminService();
-        flag = uss.DeleteAdminByIdService(delun);
+        flag = _AdminService.DeleteAdminByIdService(delun);
         if(flag){
             this.ViewData["msg"] = "User Deleted Successfully";
             return View();
@@ -147,7 +132,5 @@ public class AdminController : Controller
             this.ViewData["msg"] = "User Deletion Failed";
             return View();
         }
-        
     }
-
 }
