@@ -8,7 +8,7 @@ namespace dao;
 
 public class AdminDao:IAdminDao {
 
-    public List<Admin>? DisplayAllAdminDao()
+    public static List<Admin>? DisplayAllAdminDao()
     {
         List<Admin> lst = new List<Admin>();
         MySqlConnection conn = new MySqlConnection();
@@ -41,7 +41,7 @@ public class AdminDao:IAdminDao {
         }
     }
     
-    public bool ValidateAdminDao(Admin u) 
+    public static bool ValidateAdminDao(Admin u) 
     {
         MySqlConnection conn = new MySqlConnection();
         conn.ConnectionString = "server=192.168.10.150; port=3306; user=dac4; password=welcome; database=dac4";
@@ -73,7 +73,7 @@ public class AdminDao:IAdminDao {
         }
     }
 
-    public bool AddNewAdminDao(Admin usr)
+    public static bool AddNewAdminDao(Admin usr)
     {        
         MySqlConnection conn = new MySqlConnection();
         conn.ConnectionString =" server=192.168.10.150; port=3306; user=dac4; password=welcome; database=dac4";
@@ -94,7 +94,7 @@ public class AdminDao:IAdminDao {
         }
     }
 
-    public bool UpdateAdminByIdDao(Admin usr)
+    public static bool UpdateAdminByIdDao(Admin usr)
     {
         Admin user = new Admin();
         user.AdminId = usr.AdminId;
@@ -121,7 +121,7 @@ public class AdminDao:IAdminDao {
         }
     }
 
-    public bool DeleteAdminByIdDao(string un)
+    public static bool DeleteAdminByIdDao(string un)
     {
         Admin user = new Admin();
         user.UserName = un;

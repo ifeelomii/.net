@@ -2,10 +2,9 @@ namespace dao;
 using model;
 public interface IAdminDao
 {
-    public bool ValidateAdminDao(Admin u);
-    public bool AddNewAdminDao(Admin user);
-    
-    public bool UpdateAdminByIdDao(Admin user);
-    public bool DeleteAdminByIdDao(string un);
+    public static abstract bool ValidateAdminDao(Admin u);
+    public static abstract bool AddNewAdminDao(Admin user);
+    public static abstract bool UpdateAdminByIdDao(Admin user);
+    public static abstract bool DeleteAdminByIdDao(string un);
     
 }

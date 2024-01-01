@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace dao;
 
 public class StudentDao:IStudentDao{
-    public List<Student>? DisplayAllStudentDao()
+    public static List<Student>? DisplayAllStudentDao()
     {
         List<Student> lst = new List<Student>();
         MySqlConnection conn = new MySqlConnection();
@@ -38,7 +38,7 @@ public class StudentDao:IStudentDao{
         }
     }
 
-    public List<Student>? DisplayStudentByIdDao(int id)
+    public static List<Student>? DisplayStudentByIdDao(int id)
     {
         int searchID = id;
         List<Student> lst = new List<Student>();
@@ -54,7 +54,9 @@ public class StudentDao:IStudentDao{
                 Student st = new Student();
                 cmd.Connection = conn;
                 cmd.CommandText = query;
+                #pragma warning disable CS8604 // Possible null reference argument.
                 st.StudentId = int.Parse(reader["studentID"].ToString());
+                #pragma warning restore CS8604 // Possible null reference argument.
                 st.NameFirst = reader["namefirst"].ToString();
                 st.NameLast = reader["namelast"].ToString();
                 st.DOB = reader["dob"].ToString();
@@ -71,7 +73,7 @@ public class StudentDao:IStudentDao{
             conn.Clone();
         }
     }
-    public bool AddNewStudentDao(Student st)
+    public static bool AddNewStudentDao(Student st)
     {
         MySqlConnection conn = new MySqlConnection();
         conn.ConnectionString =" server=192.168.10.150; port=3306; user=dac4; password=welcome; database=dac4";
@@ -91,7 +93,7 @@ public class StudentDao:IStudentDao{
         }
     }
 
-    public bool UpdateStudentByIdDao(Student std)
+    public static bool UpdateStudentByIdDao(Student std)
     {
         Student st = new Student();
         st.StudentId = std.StudentId;
@@ -116,7 +118,7 @@ public class StudentDao:IStudentDao{
         }
     }
 
-    public bool DeleteStudentByIdDao(int id)
+    public static bool DeleteStudentByIdDao(int id)
     {
         Student st = new Student();
         st.StudentId = id;
@@ -137,7 +139,7 @@ public class StudentDao:IStudentDao{
         }
     }
 
-    public bool ValidateStudentDao(Student std)
+    public static bool ValidateStudentDao(Student std)
     {
         MySqlConnection conn = new MySqlConnection();
         conn.ConnectionString = "server=192.168.10.150; port=3306; user=dac4; password=welcome; database=dac4";

@@ -8,7 +8,7 @@ namespace dao;
 
 public class TeacherDao:ITeacherDao {
     
-    public bool ValidateTeacherDao(Teacher u) 
+    public static bool ValidateTeacherDao(Teacher u) 
     {
         MySqlConnection conn = new MySqlConnection();
         conn.ConnectionString = "server=192.168.10.150; port=3306; user=dac4; password=welcome; database=dac4";
@@ -38,7 +38,7 @@ public class TeacherDao:ITeacherDao {
         }
     }
 
-    public bool AddNewTeacherDao(Teacher usr)
+    public static bool AddNewTeacherDao(Teacher usr)
     {        
         MySqlConnection conn = new MySqlConnection();
         conn.ConnectionString =" server=192.168.10.150; port=3306; user=dac4; password=welcome; database=dac4";
@@ -57,7 +57,7 @@ public class TeacherDao:ITeacherDao {
         }
     }
 
-    public bool UpdateTeacherByIdDao(Teacher usr)
+    public static bool UpdateTeacherByIdDao(Teacher usr)
     {
         Teacher user = new Teacher();
         user.TeacherId = usr.TeacherId;
@@ -82,8 +82,8 @@ public class TeacherDao:ITeacherDao {
         }
     }
 
-    public bool DeleteTeacherByIdDao(string un)
-    {
+    public static bool DeleteTeacherByIdDao(string un)
+    { 
         Teacher user = new Teacher();
         user.UserName = un;
         MySqlConnection conn = new MySqlConnection();
@@ -103,7 +103,7 @@ public class TeacherDao:ITeacherDao {
         }
     }
 
-    public List<Teacher> DisplayAllTeacherDao()
+    public static List<Teacher>? DisplayAllTeacherDao()
     {
         List<Teacher> lst = new List<Teacher>();
         MySqlConnection conn = new MySqlConnection();
@@ -118,7 +118,9 @@ public class TeacherDao:ITeacherDao {
                 Teacher tech = new Teacher();
                 cmd.Connection = conn;
                 cmd.CommandText = query;
+#pragma warning disable CS8604 // Possible null reference argument.
                 tech.TeacherId = int.Parse(reader["TeacherID"].ToString());
+#pragma warning restore CS8604 // Possible null reference argument.
                 tech.FirstName = reader["FirstName"].ToString();
                 tech.LastName = reader["LastName"].ToString();
                 tech.UserName = reader["UserName"].ToString();
