@@ -3,19 +3,18 @@ using dao;
 namespace services;
 using System.Collections.Generic;
 public class StudentService : IStudentService
-{
-    public StudentDao db = new StudentDao();   
-    public List<Student> DisplayAllStudentService()
+{  
+    public List<Student>? DisplayAllStudentService()
     {
-        List<Student> lst = new List<Student>();
-        lst = db.DisplayAllStudentDao();
+        List<Student>? lst = new List<Student>();
+        lst = StudentDao.DisplayAllStudentDao();
         return lst;
     }
 
     public List<Student>? DisplayAllStudentByIdService(int id)
     {
         int Id = id;
-        List<Student> allStudents=db.DisplayStudentByIdDao(id);    
+        List<Student>? allStudents=StudentDao.DisplayStudentByIdDao(id);    
         // List<Student> student=allStudents.FindAll((s)=> s.StudentId ==Id);
         return allStudents ;
     }
@@ -24,14 +23,14 @@ public class StudentService : IStudentService
     {
         bool flag;
         StudentDao db = new StudentDao();
-        flag = db.AddNewStudentDao(st);
+        flag = StudentDao.AddNewStudentDao(st);
         return flag;
     }
     public bool UpdateStudentService(Student st)
     {
         bool flag;
         StudentDao db = new StudentDao();
-        flag = db.UpdateStudentByIdDao(st);
+        flag = StudentDao.UpdateStudentByIdDao(st);
         return flag;
     }
 
@@ -39,7 +38,7 @@ public class StudentService : IStudentService
     {
         bool flag;
         StudentDao db = new StudentDao();
-        flag = db.DeleteStudentByIdDao(delid);
+        flag = StudentDao.DeleteStudentByIdDao(delid);
         return flag;
     }
 
@@ -47,7 +46,7 @@ public class StudentService : IStudentService
     {
         bool flag;
         StudentDao db = new StudentDao();
-        flag = db.ValidateStudentDao(std);
+        flag = StudentDao.ValidateStudentDao(std);
         return flag;
     }
 }
